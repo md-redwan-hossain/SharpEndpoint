@@ -17,6 +17,6 @@ jobs:
               with:
                   dotnet-version: "8.0.x"
             - name: Restore dependencies
-              run: dotnet restore "SharpOutcome.sln"
+              run: dotnet restore "SharpEndpoint.sln"
             - name: Build
-              run: dotnet build "SharpOutcome.sln" --configuration Release --no-restore
+              run: dotnet build "SharpEndpoint.sln" --configuration Release --no-restore
