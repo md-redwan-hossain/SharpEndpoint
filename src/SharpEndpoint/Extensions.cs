@@ -5,7 +5,7 @@ namespace SharpEndpoint;
 
 public static class Extensions
 {
-    public static IEndpointRouteBuilder MapApiEndpointsFromAssembly(this IEndpointRouteBuilder endpoints,
+    public static IEndpointRouteBuilder MapSharpEndpointFragmentsFromAssembly(this IEndpointRouteBuilder endpoints,
         Assembly assembly)
     {
         var types = assembly.GetTypes().Where(t =>
