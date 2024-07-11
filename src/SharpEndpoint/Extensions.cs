@@ -16,7 +16,8 @@ public static class Extensions
             var constructors = type.GetConstructors();
             if (constructors.Length > 1 || (constructors.Length == 1 && constructors[0].GetParameters().Length > 0))
             {
-                throw new InvalidOperationException($"Type {type.FullName} must only have a empty constructor.");
+                throw new InvalidOperationException(
+                    $"Only a non-parameterized constructor is allowed in Type {type.FullName}");
             }
 
             var instance = Activator.CreateInstance(type) as SharpEndpointFragment;
