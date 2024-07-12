@@ -18,6 +18,7 @@ public class Update : SharpEndpointFragment
             e => e.WithSummary("update a book"),
             e => e.Produces(StatusCodes.Status200OK),
             e => e.Produces(StatusCodes.Status404NotFound),
+            e => e.Produces(StatusCodes.Status304NotModified),
             e => e.AddEndpointFilter<FluentValidationFilter<CreateOrUpdateBookRequest>>()
         ];
     }
