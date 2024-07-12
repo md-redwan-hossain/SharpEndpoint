@@ -1,27 +1,27 @@
 | Branch | Status                                                                                                             |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
+|--------|--------------------------------------------------------------------------------------------------------------------|
 | main   | ![Dotnet 8](https://github.com/md-redwan-hossain/SharpEndpoint/actions/workflows/dotnet.yml/badge.svg?branch=main) |
 
--   [Installation](#installation)
--   [Usage Guide](#usage-guide)
--   [Default Choices](#default-choices)
--   [Examples](#examples)
+- [Installation](#installation)
+- [Usage Guide](#usage-guide)
+- [Default Choices](#default-choices)
+- [Examples](#examples)
 
 ---
 
 ### Installation
 
--   `SharpEndpoint` is a C# library based on minimal API that offers an opinionated way to organize minimal API endpoints.
--   To install, run `dotnet add package SharpEndpoint` or from [Nuget](https://www.nuget.org/packages/SharpEndpoint/)
+- `SharpEndpoint` is a C# library based on minimal API that offers an opinionated way to organize minimal API endpoints.
+- To install, run `dotnet add package SharpEndpoint` or from [Nuget](https://www.nuget.org/packages/SharpEndpoint/)
 
 ---
 
 ### Usage Guide
 
--   Crate a class and inherit it from `SharpEndpointFragment`, then implement the required methods.
--   Constructor dependency injection is not allowed by design to stick with the minimal API convention.
--   To map all the endpoints, Call `MapSharpEndpointFragmentsFromAssembly` in the `Program.cs` file from
-    the `WebApplication` instance. For example,
+- Crate a class and inherit it from `SharpEndpointFragment`, then implement the required methods.
+- Constructor dependency injection is not allowed by design to stick with the minimal API convention.
+- To map all the endpoints, Call `MapSharpEndpointFragmentsFromAssembly` in the `Program.cs` file from
+  the `WebApplication` instance. For example,
 
 ```csharp
 var app = builder.Build();
@@ -32,18 +32,18 @@ app.MapSharpEndpointFragmentsFromAssembly(typeof(Program).Assembly);
 
 ### Default Choices
 
--   The default `Route` and `RouteGroup` are `string.Empty`
--   OpenAPI is enabled by default on both `Route` and `RouteGroup`
--   For `ConfigureRouteGroup`, OpenAPI tag will be taken from `RouteGroup` if not `string.Empty`, otherwise it will
-    be `Uncategorized`
--   To use the default configurations, use `..base.Configure()` in the return `IEnumerable`
+- The default `Route` and `RouteGroup` are `string.Empty`
+- OpenAPI is enabled by default on both `Route` and `RouteGroup`
+- For `ConfigureRouteGroup`, OpenAPI tag will be taken from `RouteGroup` if not `string.Empty`, otherwise it will
+  be `Uncategorized`
+- To use the default configurations, use `..base.Configure()` in the return `IEnumerable`
 
 ---
 
 ### Examples
 
--   A complete REST API with CRUD functionality example is also given to showcase the usefulness of SharpOutcome. Source
-    code is available [here.](https://github.com/md-redwan-hossain/SharpEndpoint/tree/main/SharpEndpoint.HttpApiExample)
+- A complete REST API with CRUD functionality example is also given to showcase the usefulness of SharpOutcome. Source
+  code is available [here.](https://github.com/md-redwan-hossain/SharpEndpoint/tree/main/SharpEndpoint.HttpApiExample)
 
 ```csharp
 public class Update : SharpEndpointFragment
@@ -62,6 +62,7 @@ public class Update : SharpEndpointFragment
             e => e.WithSummary("update a book"),
             e => e.Produces(StatusCodes.Status200OK),
             e => e.Produces(StatusCodes.Status404NotFound),
+            e => e.Produces(StatusCodes.Status304NotModified),
             e => e.AddEndpointFilter<FluentValidationFilter<CreateOrUpdateBookRequest>>()
         ];
     }
