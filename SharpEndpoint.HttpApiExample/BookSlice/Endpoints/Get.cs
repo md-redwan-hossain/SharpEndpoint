@@ -1,0 +1,36 @@
+using Microsoft.AspNetCore.Mvc;
+using SharpEndpoint.HttpApiExample.BookSlice.Services;
+using SharpEndpoint.HttpApiExample.Utils;
+
+namespace SharpEndpoint.HttpApiExample.BookSlice.Endpoints;
+
+public class Get : SharpEndpointFragment
+{
+    protected override string RouteGroup() => BookRouteConstants.BaseRoute;
+    protected override string Route() => BookRouteConstants.IdParam;
+    protected override HttpVerb Verb() => HttpVerb.GET;
+
+    protected override IEnumerable<Action<RouteHandlerBuilder>> Configure()
+    {
+        return
+        [
+            ..base.Configure(),
+            e => e.WithSummary("returns a single book"),
+            e => e.Produces(StatusCodes.Status200OK),
+            e => e.Produces(StatusCodes.Status404NotFound)
+        ];
+    }
+
+    protected override Delegate RequestHandler()
+    {
+        return async ([FromRoute] int id, [FromServices] IBookService bookService) =>
+        {
+            var result = await bookService.GetOneAsync(id);
+
+            return result.Match<IResult>(
+                entity => TypedResults.Json(data: entity, statusCode: StatusCodes.Status200OK),
+                err => TypedResults.Json(data: err)
+            );
+        };
+    }
+}

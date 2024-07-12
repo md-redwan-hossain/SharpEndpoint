@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpEndpoint", "src\SharpEndpoint\SharpEndpoint.csproj", "{1E5F31F8-8F04-4031-AEF7-98EB2229F5D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpEndpoint.HttpApiExample", "SharpEndpoint.HttpApiExample\SharpEndpoint.HttpApiExample.csproj", "{E8306C46-99F7-420F-9A15-9E17F6201CE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1E5F31F8-8F04-4031-AEF7-98EB2229F5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E5F31F8-8F04-4031-AEF7-98EB2229F5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E5F31F8-8F04-4031-AEF7-98EB2229F5D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8306C46-99F7-420F-9A15-9E17F6201CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8306C46-99F7-420F-9A15-9E17F6201CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8306C46-99F7-420F-9A15-9E17F6201CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8306C46-99F7-420F-9A15-9E17F6201CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

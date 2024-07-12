@@ -5,6 +5,9 @@ namespace SharpEndpoint;
 
 public static class Extensions
 {
+    /// <summary>
+    /// <c>MapSharpEndpointFragmentsFromAssembly</c> will map all the <c>MapSharpEndpointFragment</c> from the given assembly using reflection.
+    /// </summary>
     public static IEndpointRouteBuilder MapSharpEndpointFragmentsFromAssembly(this IEndpointRouteBuilder endpoints,
         Assembly assembly)
     {
@@ -23,7 +26,8 @@ public static class Extensions
             var instance = Activator.CreateInstance(type) as SharpEndpointFragment;
 
             var method = typeof(SharpEndpointFragment)
-                .GetMethod("MapEndpoint", BindingFlags.Instance | BindingFlags.NonPublic);
+                .GetMethod("MapSharpEndpointFragment__DO_NOT_OVERRIDE",
+                    BindingFlags.Instance | BindingFlags.NonPublic);
 
             method?.Invoke(instance, [endpoints]);
         }
