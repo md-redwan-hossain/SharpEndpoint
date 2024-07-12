@@ -10,12 +10,12 @@ public class Update : SharpEndpointFragment
     protected override string Route() => BookRouteConstants.IdParam;
     protected override HttpVerb Verb() => HttpVerb.PUT;
 
-    protected override IEnumerable<Action<RouteHandlerBuilder>> Configure()
+    protected override IEnumerable<Action<RouteHandlerBuilder>> ConfigureRoute()
     {
         return
         [
-            ..base.Configure(),
-            e => e.WithSummary("update a books"),
+            ..base.ConfigureRoute(),
+            e => e.WithSummary("update a book"),
             e => e.Produces(StatusCodes.Status200OK),
             e => e.Produces(StatusCodes.Status404NotFound),
             e => e.AddEndpointFilter<FluentValidationFilter<CreateOrUpdateBookRequest>>()

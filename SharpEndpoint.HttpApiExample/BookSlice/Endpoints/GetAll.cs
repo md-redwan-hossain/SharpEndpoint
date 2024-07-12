@@ -9,11 +9,11 @@ public class GetAll : SharpEndpointFragment
     protected override string RouteGroup() => BookRouteConstants.BaseRoute;
     protected override HttpVerb Verb() => HttpVerb.GET;
 
-    protected override IEnumerable<Action<RouteHandlerBuilder>> Configure()
+    protected override IEnumerable<Action<RouteHandlerBuilder>> ConfigureRoute()
     {
         return
         [
-            ..base.Configure(),
+            ..base.ConfigureRoute(),
             e => e.WithSummary("returns all books"),
             e => e.Produces(StatusCodes.Status200OK)
         ];

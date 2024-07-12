@@ -10,11 +10,11 @@ public class Get : SharpEndpointFragment
     protected override string Route() => BookRouteConstants.IdParam;
     protected override HttpVerb Verb() => HttpVerb.GET;
 
-    protected override IEnumerable<Action<RouteHandlerBuilder>> Configure()
+    protected override IEnumerable<Action<RouteHandlerBuilder>> ConfigureRoute()
     {
         return
         [
-            ..base.Configure(),
+            ..base.ConfigureRoute(),
             e => e.WithSummary("returns a single book"),
             e => e.Produces(StatusCodes.Status200OK),
             e => e.Produces(StatusCodes.Status404NotFound)

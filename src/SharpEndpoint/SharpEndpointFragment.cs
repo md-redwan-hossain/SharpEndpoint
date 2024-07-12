@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Routing;
 namespace SharpEndpoint;
 
 /// <summary>
-/// SharpEndpoint offers a straightforward and opinionated way to organize minimal API endpoints.
+/// <c>SharpEndpointFragment</c> offers a straightforward and opinionated way to organize minimal API endpoints.
 /// Constructor dependency injection is not allowed by design to stick with the minimal API convention.
 /// </summary>
 public abstract class SharpEndpointFragment
@@ -29,7 +29,7 @@ public abstract class SharpEndpointFragment
     /// <summary>
     /// Sets conventions on the <c>RouteGroup</c>
     /// </summary>
-    protected virtual IEnumerable<Action<RouteGroupBuilder>> ConfigureGroup()
+    protected virtual IEnumerable<Action<RouteGroupBuilder>> ConfigureRouteGroup()
     {
         var defaultTag = string.IsNullOrEmpty(RouteGroup()) ? "Uncategorized" : RouteGroup();
 
@@ -43,7 +43,7 @@ public abstract class SharpEndpointFragment
     /// <summary>
     /// Sets conventions on the <c>Route</c>
     /// </summary>
-    protected virtual IEnumerable<Action<RouteHandlerBuilder>> Configure()
+    protected virtual IEnumerable<Action<RouteHandlerBuilder>> ConfigureRoute()
     {
         return [e => e.WithOpenApi()];
     }
@@ -67,12 +67,12 @@ public abstract class SharpEndpointFragment
             _ => throw new InvalidEnumArgumentException()
         };
 
-        foreach (var elem in ConfigureGroup())
+        foreach (var elem in ConfigureRouteGroup())
         {
             elem(group);
         }
 
-        foreach (var elem in Configure())
+        foreach (var elem in ConfigureRoute())
         {
             elem(endpoint);
         }

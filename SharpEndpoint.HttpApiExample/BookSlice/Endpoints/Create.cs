@@ -9,11 +9,11 @@ public class Create : SharpEndpointFragment
     protected override string RouteGroup() => BookRouteConstants.BaseRoute;
     protected override HttpVerb Verb() => HttpVerb.POST;
 
-    protected override IEnumerable<Action<RouteHandlerBuilder>> Configure()
+    protected override IEnumerable<Action<RouteHandlerBuilder>> ConfigureRoute()
     {
         return
         [
-            ..base.Configure(),
+            ..base.ConfigureRoute(),
             e => e.WithSummary("create a book"),
             e => e.Produces(StatusCodes.Status201Created),
             e => e.Produces(StatusCodes.Status400BadRequest),

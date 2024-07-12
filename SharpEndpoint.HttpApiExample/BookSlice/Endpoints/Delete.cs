@@ -11,11 +11,11 @@ public class Delete : SharpEndpointFragment
 
     protected override HttpVerb Verb() => HttpVerb.DELETE;
 
-    protected override IEnumerable<Action<RouteHandlerBuilder>> Configure()
+    protected override IEnumerable<Action<RouteHandlerBuilder>> ConfigureRoute()
     {
         return
         [
-            ..base.Configure(),
+            ..base.ConfigureRoute(),
             e => e.WithSummary("delete a book"),
             e => e.Produces(StatusCodes.Status204NoContent),
             e => e.Produces(StatusCodes.Status400BadRequest),
@@ -30,7 +30,7 @@ public class Delete : SharpEndpointFragment
             var result = await bookService.RemoveAsync(id);
 
             return result.Match<IResult>(
-                entity => TypedResults.Json(data: entity, statusCode: StatusCodes.Status204NoContent),
+                _ => TypedResults.NoContent(),
                 err => TypedResults.Json(data: err)
             );
         };

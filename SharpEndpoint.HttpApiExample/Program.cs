@@ -33,7 +33,7 @@ builder.Services.TryAddScoped<IBookService, BookService>();
 
 builder.Services.Configure<JsonOptions>(options =>
 {
-    options.SerializerOptions.PropertyNamingPolicy = null;
+    options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter(
         namingPolicy: JsonNamingPolicy.CamelCase,
         allowIntegerValues: false)
