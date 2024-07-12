@@ -19,6 +19,8 @@
 ### Usage Guide
 
 - Crate a class and inherit it from `SharpEndpointFragment`, then implement the required methods.
+- Override `Route` and `RouteGroup` on demand to set endpoint route.
+- Override `ConfigureRoute` and `ConfigureRouteGroup` for providing configurations.
 - Constructor dependency injection is not allowed by design to stick with the minimal API convention.
 - To map all the endpoints, Call `MapSharpEndpointFragmentsFromAssembly` in the `Program.cs` file from
   the `WebApplication` instance. For example,
