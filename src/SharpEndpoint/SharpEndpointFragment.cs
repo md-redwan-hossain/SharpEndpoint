@@ -31,13 +31,14 @@ public abstract class SharpEndpointFragment
     /// </summary>
     protected virtual IEnumerable<Action<RouteGroupBuilder>> ConfigureRouteGroup()
     {
-        var defaultTag = string.IsNullOrEmpty(RouteGroup()) ? "Uncategorized" : RouteGroup();
+        ICollection<Action<RouteGroupBuilder>> actions = [e => e.WithOpenApi()];
 
-        return
-        [
-            e => e.WithOpenApi(),
-            e => e.WithTags(defaultTag)
-        ];
+        if (string.IsNullOrEmpty(RouteGroup()))
+        {
+            actions.Add(e => e.WithTags("Ungrouped"));
+        }
+
+        return actions;
     }
 
     /// <summary>
