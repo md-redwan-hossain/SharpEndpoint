@@ -31,14 +31,7 @@ public abstract class SharpEndpointFragment
     /// </summary>
     protected virtual IEnumerable<Action<RouteGroupBuilder>> ConfigureRouteGroup()
     {
-        ICollection<Action<RouteGroupBuilder>> actions = [e => e.WithOpenApi()];
-
-        if (string.IsNullOrEmpty(RouteGroup()))
-        {
-            actions.Add(e => e.WithTags("Ungrouped"));
-        }
-
-        return actions;
+        return [e => e.WithOpenApi()];
     }
 
     /// <summary>

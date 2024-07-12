@@ -35,8 +35,8 @@ app.MapSharpEndpointFragmentsFromAssembly(typeof(Program).Assembly);
 ### Default Choices
 
 - The default `Route` and `RouteGroup` are `string.Empty`
-- OpenAPI is enabled by default on both `Route` and `RouteGroup`
-- For `ConfigureRouteGroup`, `WithTags("Ungrouped")` will be added if `RouteGroup` is `string.Empty`
+- OpenAPI is enabled by default on both `Route` and `RouteGroup` by `WithOpenApi()` in `ConfigureRoute`
+  and `ConfigureRouteGroup`
 - To use the default configurations, use `..base.Configure()` in the return `IEnumerable`
 
 ---
