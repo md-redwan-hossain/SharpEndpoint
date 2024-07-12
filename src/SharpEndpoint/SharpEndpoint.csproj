@@ -16,6 +16,8 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <NoWarn>CS1591</NoWarn>
         <DocumentationFile Condition="'$(Configuration)'=='Release'">bin\$(Configuration)\$(TargetFramework)\SharpEndpoint.xml</DocumentationFile>
+        <PackageTags>minimal-api repr api-endpoint endpoint vertical-slice</PackageTags>
+        <Description>SharpEndpoint is a C# library based on minimal API that offers an opinionated way to organize minimal API endpoints.</Description>
     </PropertyGroup>
 
     <ItemGroup>
