@@ -2,14 +2,14 @@
 | ------ | ------------------------------------------------------------------------------------------------------------------ |
 | main   | ![Dotnet 8](https://github.com/md-redwan-hossain/SharpEndpoint/actions/workflows/dotnet.yml/badge.svg?branch=main) |
 
--   [Installation- Installation](#installation--installation)
+-   [Installation](#installation)
 -   [Usage Guide](#usage-guide)
 -   [Default Choices](#default-choices)
 -   [Examples](#examples)
 
 ---
 
-### Installation- [Installation](#installation)
+### Installation
 
 -   `SharpEndpoint` is a C# library based on minimal API that offers an opinionated way to organize minimal API endpoints.
 -   To install, run `dotnet add package SharpEndpoint` or from [Nuget](https://www.nuget.org/packages/SharpEndpoint/)
