@@ -40,6 +40,17 @@ builder.Services.Configure<JsonOptions>(options =>
     );
 });
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowedOriginsForCors", x => x
+        .WithOrigins("http://localhost:4200")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials()
+    );
+});
+
 var app = builder.Build();
 
 app.Lifetime.ApplicationStopping.Register(() =>
@@ -51,5 +62,6 @@ app.Lifetime.ApplicationStopping.Register(() =>
 app.UseSwagger();
 app.UseSwaggerUI(o => o.EnableTryItOutByDefault());
 
+app.UseCors("AllowedOriginsForCors");
 app.MapSharpEndpointFragmentsFromAssembly(typeof(Program).Assembly);
 app.Run();

@@ -2,6 +2,7 @@ using Mapster;
 using Microsoft.EntityFrameworkCore;
 using SharpEndpoint.HttpApiExample.BookSlice.Domain;
 using SharpEndpoint.HttpApiExample.Persistence;
+using SharpEndpoint.HttpApiExample.Utils;
 using SharpOutcome;
 using SharpOutcome.Helpers;
 
@@ -57,9 +58,16 @@ public class BookService : IBookService
         }
     }
 
-    public async Task<IList<Book>> GetAllAsync()
+    public async Task<PagedData<IList<Book>>> GetAllAsync(int page, int limit)
     {
-        return await _bookDbContext.Books.ToListAsync();
+        var count = await _bookDbContext.Books.CountAsync();
+
+        var data = await _bookDbContext.Books
+            .Paginate(page, limit)
+            .OrderBy(x => x.Id)
+            .ToListAsync();
+
+        return new PagedData<IList<Book>>(data, count);
     }
 
     public async Task<ValueOutcome<Book, IBadOutcome>> GetOneAsync(int id)

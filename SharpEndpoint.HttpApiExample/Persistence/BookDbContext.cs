@@ -27,6 +27,6 @@ public class BookDbContext(DbContextOptions<BookDbContext> options)
             .RuleFor(b => b.Genre, f => f.PickRandom(genres))
             .RuleFor(b => b.Author, f => f.Name.FullName())
             .RuleFor(b => b.Price, f => f.Random.Int(100, 1000))
-            .Generate(20);
+            .Generate(200);
     }
 }

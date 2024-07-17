@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SharpEndpoint.HttpApiExample.BookSlice.Domain;
 using SharpEndpoint.HttpApiExample.BookSlice.Services;
 using SharpEndpoint.HttpApiExample.Utils;
 
@@ -15,16 +16,17 @@ public class GetAll : SharpEndpointFragment
         [
             ..base.ConfigureRoute(),
             e => e.WithSummary("returns all books"),
-            e => e.Produces(StatusCodes.Status200OK)
+            e => e.Produces<PagedData<ICollection<Book>>>()
         ];
     }
 
     protected override Delegate RequestHandler()
     {
-        return async ([FromServices] IBookService bookService) =>
+        return async ([FromServices] IBookService bookService, [FromQuery] int page = 1, [FromQuery] int limit = 15) =>
         {
-            var result = await bookService.GetAllAsync();
-            return TypedResults.Json(data: result, statusCode: StatusCodes.Status200OK);
+            var result = await bookService.GetAllAsync(page, limit);
+            var res = new PagedData<ICollection<Book>>(result.Data, result.TotalDataCount);
+            return TypedResults.Json(data: res, statusCode: StatusCodes.Status200OK);
         };
     }
 }
